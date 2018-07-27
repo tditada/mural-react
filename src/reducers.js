@@ -1,5 +1,5 @@
 import { 
-	CREATE_STICKY_NOTE, SELECT_NOTE
+	CREATE_STICKY_NOTE, SELECT_NOTE, NO_SELECT
 } from './constants'
 
 const initialState = {
@@ -13,6 +13,7 @@ const isTargetANote = (target) => {
 }
  
 export const changeNotes = (state=initialState, action={}) => {
+	let newNotes = {};
 	switch(action.type) {
 		case CREATE_STICKY_NOTE:
 			if (isTargetANote(action.payload.target)) {
@@ -27,7 +28,7 @@ export const changeNotes = (state=initialState, action={}) => {
 			}
 			return { ...state, notes :  [...state.notes, newNote], totalNotesCreated: state.totalNotesCreated + 1}
 		case SELECT_NOTE:
-			const newNotes = state.notes.map( (item, index) => {
+			newNotes = state.notes.map( (item, index) => {
 		        if (index !== (parseInt(action.payload.id, 10) - 1)) {
 		            return {
 		            	...item,
@@ -37,6 +38,17 @@ export const changeNotes = (state=initialState, action={}) => {
 		        return {
 		            ...item,
 		            active: !item.active
+		        };
+		     });
+			return { ...state, notes: newNotes}
+		case NO_SELECT:
+			if (isTargetANote(action.payload)) {
+				return state;
+			}
+			newNotes = state.notes.map( (item) => {
+		        return {
+		            ...item,
+		            active: false
 		        };
 		     });
 			return { ...state, notes: newNotes}
