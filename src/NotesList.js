@@ -1,7 +1,7 @@
 import React from 'react';
 import StickyNote from './StickyNote';
 
-const NotesList = ({ notes }) => {
+const NotesList = ({ notes, onNoteClick }) => {
 	return (
 		<div>
 		{
@@ -12,6 +12,8 @@ const NotesList = ({ notes }) => {
 						id={note.id} 
 						posY={note.posY}
 						posX={note.posX}
+						onNoteClick={onNoteClick}
+						active={note.active ? 'active' : ''}
 					/>
 				);
 			})
