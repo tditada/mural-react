@@ -6,10 +6,18 @@ const initialState = {
 	notes: [],
 	totalNotesCreated: 0
 }
+
+const isTargetANote = (target) => {
+	const noteid = parseInt(target.getAttribute("noteid"), 10)
+	return typeof noteid === 'number' && !Number.isNaN(noteid);
+}
  
 export const changeNotes = (state=initialState, action={}) => {
 	switch(action.type) {
 		case CREATE_STICKY_NOTE:
+			if (isTargetANote(action.payload.target)) {
+				return state;
+			}
 			const newNote = {
 				id: state.totalNotesCreated + 1,
 				text: "",
