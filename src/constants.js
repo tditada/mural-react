@@ -1,0 +1,1 @@
+export const CREATE_STICKY_NOTE = 'CREATE_STICKY_NOTE';
