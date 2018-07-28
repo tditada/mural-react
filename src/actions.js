@@ -5,7 +5,8 @@ import {
 	EDIT_NOTE ,
 	WRITE_NOTE,
 	COPY_NOTES,
-	PASTE_NOTES
+	PASTE_NOTES,
+	REMOVE_NOTES
 } from './constants'
 
 export const createNote = (posX, posY, target) => ({ type: CREATE_STICKY_NOTE, payload: {'posX': posX, 'posY': posY, 'target': target}})
@@ -21,3 +22,5 @@ export const writeNote = (id,  text) => ({ type: WRITE_NOTE, payload: { 'text': 
 export const copyNotes = () => ({ type: COPY_NOTES })
 
 export const pasteNotes = () => ({ type: PASTE_NOTES})
+
+export const removeNotes = () => ({ type: REMOVE_NOTES })

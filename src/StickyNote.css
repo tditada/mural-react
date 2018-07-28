@@ -1,10 +1,10 @@
 .note {
 	min-height: 150px;
 	min-width: 150px;
-	border: 1px solid lightgray; 
 	padding: 1rem;
 	width: 8rem;
 	cursor: pointer;
+
 }
 
 .active {
@@ -17,16 +17,16 @@
 }
 
 .bg-washed-violet {
-	background-color: #f9e8fd; 
+	background-color: #ec9bff; 
 }
 .bg-washed-yellow {
-	background-color: #f9fde8; 
+	background-color: #f3f06e; 
 }
 .bg-washed-red {
-	background-color: #fde8e8;
+	background-color: #ffc6c6;
 }
 .bg-washed-blue {
-	background-color: #e8f7fd;
+	background-color: #99e2ff;
 }
 
 textarea {
@@ -41,11 +41,13 @@ textarea {
 	padding: 0;
 	font-family: sans-serif;
     letter-spacing: 0.025em;
+    font-size: 1em;
 }
 
 p {
 	margin: 0;
 	width: 100%;
 	white-space: pre-wrap;
+	overflow: hidden
 	/*word-break: break-all;*/
 }

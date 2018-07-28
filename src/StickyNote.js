@@ -39,8 +39,9 @@ class StickyNote extends Component {
 
 	render() { 
 		const {noteid, notes, onNoteClick, onNoteDoubleClick, onWriteNote} = this.props;
-		const {posX, posY, id, active, canWrite, text, color} = notes[parseInt(noteid, 10) - 1];
+		const {posX, posY, id, active, canWrite, text, color, removed} = notes[parseInt(noteid, 10) - 1];
 		const activeClass = active ? 'active' : '';
+		const isRemoved = (removed ? ' hidden' : '');
 
 		const styles = {
 			position: 'absolute',
@@ -50,7 +51,7 @@ class StickyNote extends Component {
 		const bgColor = "bg-washed-" + color;
 
 	    return ( 
-	    	< div noteid={id} onClick={onNoteClick} onDoubleClick={onNoteDoubleClick} style={styles} className ={'note ' + activeClass + " " + bgColor} >
+	    	< div noteid={id} onClick={onNoteClick} onDoubleClick={onNoteDoubleClick} style={styles} className ={'note ' + activeClass + " " + bgColor + isRemoved} >
 	    		<p className={canWrite ? 'hidden' : ''}> {text} </p>
     			<textarea value={text} maxLength={MAX_TEXT_SIZE} onKeyDown={(event) => this.auto_grow(event)} onChange={onWriteNote} ref={input => input && input.focus()} className={!canWrite ? 'hidden' : ''}></textarea>
 	    	</ div>

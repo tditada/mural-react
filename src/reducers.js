@@ -10,7 +10,8 @@ import {
 	COLORS,
 	COPY_POSX,
 	COPY_POSY,
-	INSTRUCTIONS
+	INSTRUCTIONS,
+	REMOVE_NOTES
 } from './constants'
 
 const initialState = {
@@ -20,14 +21,16 @@ const initialState = {
 		color: COLORS[0],
 		posX: COPY_POSX,
 		posY: COPY_POSY,
-		active: false
+		active: false,
+		removed: false
 	}, {
 		id: 2,
 		text: INSTRUCTIONS,
 		color: COLORS[1],
 		posX: 2*COPY_POSX ,
 		posY: 2*COPY_POSY,
-		active: false
+		active: false,
+		removed: false
 	}],
 	totalNotesCreated: 2,
 	copied: []
@@ -57,7 +60,8 @@ export const changeNotes = (state=initialState, action={}) => {
 				color: COLORS[id%COLORS.length],
 				posX: action.payload.posX,
 				posY: action.payload.posY,
-				active: false
+				active: false,
+				removed: false
 			}
 			return { ...state, notes :  [...state.notes, newNote], totalNotesCreated: state.totalNotesCreated + 1}
 		case SELECT_NOTE:
@@ -68,8 +72,7 @@ export const changeNotes = (state=initialState, action={}) => {
 		        	}
 		            return {
 		            	...item,
-		            	active: false,
-		            	canWrite: false
+		            	active: false
 		            }
 		        }
 		        return {
@@ -130,8 +133,15 @@ export const changeNotes = (state=initialState, action={}) => {
 			});
 			newNotes = state.notes.concat(copied);
 			return { ...state, copied: [], notes: newNotes, totalNotesCreated: id}
+		case REMOVE_NOTES: 
+			newNotes = state.notes.map((item) => {
+				if (!item.active) {
+					return item;
+				}
+				return {... item, removed: true}
+			});
+			return { ...state, notes: newNotes}
 		default:
 			return state
 	}
 }
- 

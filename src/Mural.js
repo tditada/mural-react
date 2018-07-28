@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createNote, noSelect, copyNotes, pasteNotes } from './actions';
+import { createNote, noSelect, copyNotes, pasteNotes, removeNotes } from './actions';
 import './Mural.css';
 import NotesList from './NotesList'
+import { ESCAPE_CODE } from './constants'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
   	onClickMural: (event) => dispatch(noSelect(event.target)),
     onDoubleClickMural: (event) => dispatch(createNote(event.clientX, event.clientY, event.target)),
     onControlC: (event) => dispatch(copyNotes()),
-    onControlV: (event) => dispatch(pasteNotes())
+    onControlV: (event) => dispatch(pasteNotes()),
+    onEscape: (event) => dispatch(removeNotes())
   }
 }
 
@@ -23,12 +25,14 @@ class Mural extends Component {
 
 	keyDownFunction(event){
 	    const charCode = String.fromCharCode(event.which).toLowerCase();
-	    const { onControlC, onControlV } = this.props;  
+	    const { onControlC, onControlV, onEscape } = this.props;  
 	    if(event.ctrlKey && charCode === 'c') {
-	      onControlC();
+	    	onControlC();
 	    } else if(event.ctrlKey && charCode === 'v') {
-	      onControlV();
-	    } 
+	    	onControlV();
+	    } else if (event.keyCode == ESCAPE_CODE){
+	    	onEscape();
+	    }
 	}
 
 	componentDidMount(){
