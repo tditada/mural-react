@@ -1,15 +1,31 @@
 .note {
 	min-height: 150px;
-	min-width: 150px; 
+	min-width: 150px;
+	border: 1px solid lightgray; 
+	padding: 1rem;
+	width: 8rem;
 }
 
 .active {
-    outline: 2px solid lightblue;
+    outline: 2px solid rgb(173, 186, 230);
     outline-offset: 0.3em;
 }
 
 .hidden {
 	display: none;
+}
+
+.bg-washed-violet {
+	background-color: #f9e8fd; 
+}
+.bg-washed-yellow {
+	background-color: #f9fde8; 
+}
+.bg-washed-red {
+	background-color: #fde8e8;
+}
+.bg-washed-blue {
+	background-color: #e8f7fd;
 }
 
 textarea {
@@ -21,6 +37,8 @@ textarea {
 	border: none;
 	outline: none;
 	padding: 0;
+	font-family: sans-serif;
+    letter-spacing: 0.025em;
 }
 
 p {

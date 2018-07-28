@@ -6,7 +6,10 @@ import {
 	WRITE_NOTE,
 	MAX_TEXT_SIZE,
 	COPY_NOTES,
-	PASTE_NOTES
+	PASTE_NOTES,
+	COLORS,
+	COPY_POSX,
+	COPY_POSY
 } from './constants'
 
 const initialState = {
@@ -26,14 +29,17 @@ const isTargetANote = (target) => {
  
 export const changeNotes = (state=initialState, action={}) => {
 	let newNotes = {};
+	let id;
 	switch(action.type) {
 		case CREATE_STICKY_NOTE:
 			if (isNoteClick(action.payload.target)) {
 				return state;
 			}
+			id = state.totalNotesCreated + 1; 
 			const newNote = {
-				id: state.totalNotesCreated + 1,
+				id: id,
 				text: "",
+				color: COLORS[id%COLORS.length],
 				posX: action.payload.posX,
 				posY: action.payload.posY,
 				active: false
@@ -101,10 +107,10 @@ export const changeNotes = (state=initialState, action={}) => {
 			});
 			return { ...state, copied: copiedNotes}
 		case PASTE_NOTES:
-			let id = state.totalNotesCreated;
+			id = state.totalNotesCreated;
 			const copied = state.copied.map( (item) => {
 				id = id + 1;
-				return { ...item, id: id, posX: item.posX + 100, posY: item.posY + 100};
+				return { ...item, id: id, posX: item.posX + COPY_POSX, posY: item.posY + COPY_POSY};
 			});
 			newNotes = state.notes.concat(copied);
 			return { ...state, copied: [], notes: newNotes, totalNotesCreated: id}

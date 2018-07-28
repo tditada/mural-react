@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createNote, noSelect, copyNotes, pasteNotes } from './actions';
-
+import './Mural.css';
 import NotesList from './NotesList'
 
 const mapStateToProps = (state) => {
@@ -42,7 +42,7 @@ class Mural extends Component {
     render() {
     	const {notes, onClickMural, onDoubleClickMural, onControlC} = this.props;
         return ( 
-        	< div onClick={onClickMural} onDoubleClick={onDoubleClickMural} onKeyDown={onControlC} className = 'bg-light-yellow vh-100 dt w-100' >
+        	< div onClick={onClickMural} onDoubleClick={onDoubleClickMural} onKeyDown={onControlC} className = 'mural' >
         		<NotesList notes={notes} />
         	</ div>
         );
