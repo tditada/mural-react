@@ -4,12 +4,15 @@ import {
 	NO_SELECT,
 	EDIT_NOTE,
 	WRITE_NOTE,
-	MAX_TEXT_SIZE
+	MAX_TEXT_SIZE,
+	COPY_NOTES,
+	PASTE_NOTES
 } from './constants'
 
 const initialState = {
 	notes: [],
-	totalNotesCreated: 0
+	totalNotesCreated: 0,
+	copied: []
 }
 
 const isNoteClick = (target) => {
@@ -92,7 +95,21 @@ export const changeNotes = (state=initialState, action={}) => {
 		        return item
 		     });
 			return { ...state, notes: newNotes}
+		case COPY_NOTES:
+			const copiedNotes = state.notes.filter((item) => {
+				return item.active
+			});
+			return { ...state, copied: copiedNotes}
+		case PASTE_NOTES:
+			let id = state.totalNotesCreated;
+			const copied = state.copied.map( (item) => {
+				id = id + 1;
+				return { ...item, id: id, posX: item.posX + 100, posY: item.posY + 100};
+			});
+			newNotes = state.notes.concat(copied);
+			return { ...state, copied: [], notes: newNotes, totalNotesCreated: id}
 		default:
 			return state
 	}
 }
+ 

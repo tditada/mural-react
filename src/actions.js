@@ -18,6 +18,6 @@ export const startWriteNote = (id) => ({ type: EDIT_NOTE, payload: id })
 
 export const writeNote = (id,  text) => ({ type: WRITE_NOTE, payload: { 'text': text, 'id': id }})
 
-export const copyNotes = (ids) => ({ type: COPY_NOTES, payload: ids })
+export const copyNotes = () => ({ type: COPY_NOTES })
 
 export const pasteNotes = () => ({ type: PASTE_NOTES})
