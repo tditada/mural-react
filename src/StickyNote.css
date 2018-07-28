@@ -1,9 +1,11 @@
 .note {
-	min-height: 100px;
+	min-height: 150px;
+	min-width: 150px; 
 }
 
 .active {
     outline: 2px solid lightblue;
+    outline-offset: 0.3em;
 }
 
 .hidden {
@@ -18,6 +20,7 @@ textarea {
 	resize: none;
 	border: none;
 	outline: none;
+	padding: 0;
 }
 
 p {

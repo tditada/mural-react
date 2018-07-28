@@ -12,4 +12,4 @@ export const COPY_NOTES = 'COPY_NOTES';
 
 export const PASTE_NOTES = 'PASTE_NOTES';
 
-export const MAX_TEXT_SIZE = 76;
+export const MAX_TEXT_SIZE = 150;

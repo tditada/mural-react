@@ -39,6 +39,9 @@ export const changeNotes = (state=initialState, action={}) => {
 		case SELECT_NOTE:
 			newNotes = state.notes.map( (item, index) => {
 		        if (index !== (parseInt(action.payload.id, 10) - 1)) {
+		        	if (action.payload.shiftPressed) {
+		        		return item;
+		        	}
 		            return {
 		            	...item,
 		            	active: false,
