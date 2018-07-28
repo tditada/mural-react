@@ -4,6 +4,7 @@
 	border: 1px solid lightgray; 
 	padding: 1rem;
 	width: 8rem;
+	cursor: pointer;
 }
 
 .active {
@@ -29,6 +30,7 @@
 }
 
 textarea {
+	min-height: 150px;
 	background: none;
     width: 100%;
     display: block;
@@ -44,5 +46,6 @@ textarea {
 p {
 	margin: 0;
 	width: 100%;
-	word-break: break-all;
+	white-space: pre-wrap;
+	/*word-break: break-all;*/
 }

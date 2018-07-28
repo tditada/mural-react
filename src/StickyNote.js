@@ -12,11 +12,18 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const getNoteId = (target) => {
+	if (target.getAttribute("noteid")) {
+		return target.getAttribute("noteid");
+	}
+	return target.parentNode.getAttribute("noteid");
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    onNoteClick: (event) => dispatch(selectNote(event.target.getAttribute("noteid"), event.shiftKey)),
-    onNoteDoubleClick: (event) => dispatch(startWriteNote(event.target.getAttribute("noteid"))),
-    onWriteNote: (event) => dispatch(writeNote(event.target.parentNode.getAttribute("noteid"), event.target.value))
+    onNoteClick: (event) => dispatch(selectNote(getNoteId(event.target), event.shiftKey)),
+    onNoteDoubleClick: (event) => dispatch(startWriteNote(getNoteId(event.target))),
+    onWriteNote: (event) => dispatch(writeNote(getNoteId(event.target), event.target.value))
   }
 }
 
@@ -45,7 +52,7 @@ class StickyNote extends Component {
 	    return ( 
 	    	< div noteid={id} onClick={onNoteClick} onDoubleClick={onNoteDoubleClick} style={styles} className ={'note ' + activeClass + " " + bgColor} >
 	    		<p className={canWrite ? 'hidden' : ''}> {text} </p>
-    			<textarea maxLength={MAX_TEXT_SIZE} onKeyDown={(event) => this.auto_grow(event)} onChange={onWriteNote} ref={input => input && input.focus()} className={!canWrite ? 'hidden' : ''}></textarea>
+    			<textarea value={text} maxLength={MAX_TEXT_SIZE} onKeyDown={(event) => this.auto_grow(event)} onChange={onWriteNote} ref={input => input && input.focus()} className={!canWrite ? 'hidden' : ''}></textarea>
 	    	</ div>
 	    );
 	}

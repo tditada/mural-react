@@ -9,12 +9,27 @@ import {
 	PASTE_NOTES,
 	COLORS,
 	COPY_POSX,
-	COPY_POSY
+	COPY_POSY,
+	INSTRUCTIONS
 } from './constants'
 
 const initialState = {
-	notes: [],
-	totalNotesCreated: 0,
+	notes: [ {
+		id: 1,
+		text: "Welcome!",
+		color: COLORS[0],
+		posX: COPY_POSX,
+		posY: COPY_POSY,
+		active: false
+	}, {
+		id: 2,
+		text: INSTRUCTIONS,
+		color: COLORS[1],
+		posX: 2*COPY_POSX ,
+		posY: 2*COPY_POSY,
+		active: false
+	}],
+	totalNotesCreated: 2,
 	copied: []
 }
 
@@ -65,6 +80,7 @@ export const changeNotes = (state=initialState, action={}) => {
 			return { ...state, notes: newNotes}
 		case NO_SELECT:
 			if (isNoteClick(action.payload)) {
+
 				return state;
 			}
 			newNotes = state.notes.map( (item) => {
