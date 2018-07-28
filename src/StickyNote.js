@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectNote } from './actions';
+import { selectNote, startWriteNote } from './actions';
 import './StickyNote.css'
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onNoteClick: (event) => dispatch(selectNote(event.target.getAttribute("noteid")))
+    onNoteClick: (event) => dispatch(selectNote(event.target.getAttribute("noteid"))),
+    onNoteDoubleClick: (event) => dispatch(startWriteNote(event.target.getAttribute("noteid")))
   }
 }
 
@@ -20,8 +21,8 @@ const mapDispatchToProps = (dispatch) => {
 class StickyNote extends Component {
 
 	render() { 
-		const {notes, onNoteClick, noteid} = this.props;
-		const {posX, posY, id, active} = notes[parseInt(noteid) - 1];
+		const {noteid, notes, onNoteClick, onNoteDoubleClick} = this.props;
+		const {posX, posY, id, active, canWrite, text} = notes[parseInt(noteid, 10) - 1];
 		const activeClass = active ? 'active' : '';
 
 		const styles = {
@@ -30,7 +31,9 @@ class StickyNote extends Component {
 			left: posX
 		}
 	    return ( 
-	    	< div noteid={id} onClick={onNoteClick} style={styles} className ={'bg-washed-green pa3 bn shadow-3 h4 w4 ' + activeClass} >
+	    	< div noteid={id} onClick={onNoteClick} onDoubleClick={onNoteDoubleClick} style={styles} className ={'bg-washed-green pa3 bn shadow-3 h4 w4 ' + activeClass} >
+	    		<p className={canWrite ? 'hidden' : ''}> {text} </p>
+    			<textarea ref={input => input && input.focus()} className={!canWrite ? 'hidden' : ''}></textarea>
 	    	</ div>
 	    );
 	}

@@ -1,5 +1,8 @@
 import { 
-	CREATE_STICKY_NOTE, SELECT_NOTE, NO_SELECT
+	CREATE_STICKY_NOTE, 
+	SELECT_NOTE, 
+	NO_SELECT,
+	EDIT_NOTE
 } from './constants'
 
 const initialState = {
@@ -32,7 +35,8 @@ export const changeNotes = (state=initialState, action={}) => {
 		        if (index !== (parseInt(action.payload.id, 10) - 1)) {
 		            return {
 		            	...item,
-		            	active: false
+		            	active: false,
+		            	canWrite: false
 		            }
 		        }
 		        return {
@@ -48,7 +52,19 @@ export const changeNotes = (state=initialState, action={}) => {
 			newNotes = state.notes.map( (item) => {
 		        return {
 		            ...item,
-		            active: false
+		            active: false,
+		            canWrite: false
+		        };
+		     });
+			return { ...state, notes: newNotes}
+		case EDIT_NOTE: 
+			newNotes = state.notes.map( (item, index) => {
+		        if(index !== (parseInt(action.payload, 10) - 1)) {
+		            return item;
+		        }
+		        return {
+		            ...item,
+		            canWrite: true
 		        };
 		     });
 			return { ...state, notes: newNotes}
