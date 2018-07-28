@@ -3,7 +3,7 @@
 }
 
 .active {
-    border: 2px solid lightblue;
+    outline: 2px solid lightblue;
 }
 
 .hidden {
