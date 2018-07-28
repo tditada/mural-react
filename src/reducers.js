@@ -2,7 +2,8 @@ import {
 	CREATE_STICKY_NOTE, 
 	SELECT_NOTE, 
 	NO_SELECT,
-	EDIT_NOTE
+	EDIT_NOTE,
+	WRITE_NOTE
 } from './constants'
 
 const initialState = {
@@ -65,6 +66,17 @@ export const changeNotes = (state=initialState, action={}) => {
 		        return {
 		            ...item,
 		            canWrite: true
+		        };
+		     });
+			return { ...state, notes: newNotes}
+		case WRITE_NOTE:
+			newNotes = state.notes.map( (item, index) => {
+		        if(index !== (parseInt(action.payload.id, 10) - 1)) {
+		            return item;
+		        }
+		        return {
+		            ...item,
+		            text: action.payload.text
 		        };
 		     });
 			return { ...state, notes: newNotes}
