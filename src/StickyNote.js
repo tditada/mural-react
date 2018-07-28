@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectNote, startWriteNote, writeNote } from './actions';
 import './StickyNote.css'
+import { MAX_TEXT_SIZE } from './constants'
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -18,8 +20,15 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
 class StickyNote extends Component {
+
+	auto_grow (event) {
+		const element = event.target;
+	 	element.style.height = 'auto';
+		element.style.height = element.scrollHeight+'px';
+		element.scrollTop = element.scrollHeight;
+		window.scrollTo(window.scrollLeft,(element.scrollTop + element.scrollHeight));
+	}
 
 	render() { 
 		const {noteid, notes, onNoteClick, onNoteDoubleClick, onWriteNote} = this.props;
@@ -31,10 +40,11 @@ class StickyNote extends Component {
 			top: posY,
 			left: posX
 		}
+
 	    return ( 
-	    	< div noteid={id} onClick={onNoteClick} onDoubleClick={onNoteDoubleClick} style={styles} className ={'bg-washed-green pa3 bn shadow-3 h4 w4 ' + activeClass} >
+	    	< div noteid={id} onClick={onNoteClick} onDoubleClick={onNoteDoubleClick} style={styles} className ={'note bg-washed-green pa3 bn shadow-3 w4 ' + activeClass} >
 	    		<p className={canWrite ? 'hidden' : ''}> {text} </p>
-    			<textarea onChange={onWriteNote} ref={input => input && input.focus()} className={!canWrite ? 'hidden' : ''}></textarea>
+    			<textarea maxLength={MAX_TEXT_SIZE} onKeyDown={(event) => this.auto_grow(event)} onChange={onWriteNote} ref={input => input && input.focus()} className={!canWrite ? 'hidden' : ''}></textarea>
 	    	</ div>
 	    );
 	}

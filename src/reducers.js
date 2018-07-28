@@ -3,12 +3,17 @@ import {
 	SELECT_NOTE, 
 	NO_SELECT,
 	EDIT_NOTE,
-	WRITE_NOTE
+	WRITE_NOTE,
+	MAX_TEXT_SIZE
 } from './constants'
 
 const initialState = {
 	notes: [],
 	totalNotesCreated: 0
+}
+
+const isNoteClick = (target) => {
+	return isTargetANote(target) || isTargetANote(target.parentNode)
 }
 
 const isTargetANote = (target) => {
@@ -20,7 +25,7 @@ export const changeNotes = (state=initialState, action={}) => {
 	let newNotes = {};
 	switch(action.type) {
 		case CREATE_STICKY_NOTE:
-			if (isTargetANote(action.payload.target)) {
+			if (isNoteClick(action.payload.target)) {
 				return state;
 			}
 			const newNote = {
@@ -47,7 +52,7 @@ export const changeNotes = (state=initialState, action={}) => {
 		     });
 			return { ...state, notes: newNotes}
 		case NO_SELECT:
-			if (isTargetANote(action.payload)) {
+			if (isNoteClick(action.payload)) {
 				return state;
 			}
 			newNotes = state.notes.map( (item) => {
@@ -74,10 +79,14 @@ export const changeNotes = (state=initialState, action={}) => {
 		        if(index !== (parseInt(action.payload.id, 10) - 1)) {
 		            return item;
 		        }
-		        return {
-		            ...item,
-		            text: action.payload.text
-		        };
+
+		        if (action.payload.text.length <= MAX_TEXT_SIZE) {
+		        	return {
+			            ...item,
+			            text: action.payload.text
+			        }
+		        } 
+		        return item
 		     });
 			return { ...state, notes: newNotes}
 		default:
