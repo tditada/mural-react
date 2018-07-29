@@ -52,7 +52,7 @@ npm run test
 
 ## Poll
 - **What javascript frameworks are you familiar with?**
-If we are talking about frontend frameworks then* Vue.js* and *React* (this is my first react project). For backend I'm actually using *Node.js + Express* and *Restify*.
+If we are talking about frontend frameworks then *Vue.js* and *React* (this is my first react project). For backend I'm actually using *Node.js + Express* and *Restify*.
 - **Did you work with any of these technologies? SVG, WebWorkers, WebSockets, Offline**
 Yes, I worked with SVG and WebSockets in the past.
 - **What other languages have you programmed in? Which ones professionally?**
