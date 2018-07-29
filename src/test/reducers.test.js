@@ -3,8 +3,8 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const assert = chai.assert;
 const expect = chai.expect;
-import { changeNotes, initialState } from '../src/reducers/reducers';
-import { CREATE_STICKY_NOTE, SELECT_NOTE, NO_SELECT, EDIT_NOTE, WRITE_NOTE, COPY_NOTES, PASTE_NOTES, REMOVE_NOTES } from '../src/constants/actionsConstants'
+import { changeNotes, initialState } from '../reducers/reducers';
+import { CREATE_STICKY_NOTE, SELECT_NOTE, NO_SELECT, EDIT_NOTE, WRITE_NOTE, COPY_NOTES, PASTE_NOTES, REMOVE_NOTES } from '../constants/actionsConstants'
 
 describe('Reducer::changeNotes', function(){
 	const document = (new JSDOM(`<!DOCTYPE html>`)).window.document;
