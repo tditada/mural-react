@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createNote, noSelect, copyNotes, pasteNotes, removeNotes } from './actions';
+import { createNote, noSelect, copyNotes, pasteNotes, removeNotes } from '../../actions/muralActions';
 import './Mural.css';
-import NotesList from './NotesList'
-import { DELETE_CODE } from './constants'
+import NotesList from '../../components/NotesList'
+import { DELETE_CODE } from '../../constants/generalConstants'
 
 const mapStateToProps = (state) => {
   return {

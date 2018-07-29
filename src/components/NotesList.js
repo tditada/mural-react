@@ -1,5 +1,5 @@
 import React from 'react';
-import StickyNote from './StickyNote';
+import StickyNote from '../containers/stickyNote/StickyNote';
 
 const NotesList = ({ notes }) => {
 	return (

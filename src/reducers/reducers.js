@@ -4,15 +4,17 @@ import {
 	NO_SELECT,
 	EDIT_NOTE,
 	WRITE_NOTE,
-	MAX_TEXT_SIZE,
 	COPY_NOTES,
 	PASTE_NOTES,
+	REMOVE_NOTES
+} from '../constants/actionsConstants'
+import {
+	MAX_TEXT_SIZE,
 	COLORS,
 	COPY_POSX,
 	COPY_POSY,
-	INSTRUCTIONS,
-	REMOVE_NOTES
-} from './constants'
+	INSTRUCTIONS
+}  from '../constants/generalConstants'
 
 export const initialState = {
 	notes: [ {

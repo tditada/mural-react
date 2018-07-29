@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectNote, startWriteNote, writeNote } from './actions';
+import { selectNote, startWriteNote, writeNote } from '../../actions/stickyNoteActions';
 import './StickyNote.css'
-import { MAX_TEXT_SIZE } from './constants'
+import { MAX_TEXT_SIZE } from '../../constants/generalConstants'
 
 
 const mapStateToProps = (state, ownProps) => {

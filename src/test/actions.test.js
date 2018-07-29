@@ -1,26 +1,9 @@
 import chai from 'chai';
 const assert = chai.assert;
 const expect = chai.expect;
-import { 
-	createNote, 
-	selectNote, 
-	noSelect, 
-	startWriteNote, 
-	writeNote,
-	copyNotes,
-	pasteNotes, 
-	removeNotes
-} from '../src/actions';
-import { 
-	CREATE_STICKY_NOTE, 
-	SELECT_NOTE, 
-	NO_SELECT, 
-	EDIT_NOTE, 
-	WRITE_NOTE,
-	COPY_NOTES,
-	PASTE_NOTES,
-	REMOVE_NOTES
-} from '../src/constants'
+import { createNote,  noSelect, copyNotes, pasteNotes,  removeNotes } from '../src/actions/muralActions';
+import { selectNote, startWriteNote, writeNote } from '../src/actions/stickyNoteActions'
+import { CREATE_STICKY_NOTE,  SELECT_NOTE,  NO_SELECT,  EDIT_NOTE,  WRITE_NOTE, COPY_NOTES, PASTE_NOTES, REMOVE_NOTES } from '../src/constants/actionsConstants'
 
 describe('Action::Notes', function(){
 	describe('#createNote()', function(){
