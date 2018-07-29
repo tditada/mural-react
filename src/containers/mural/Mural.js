@@ -26,7 +26,6 @@ class Mural extends Component {
 	keyDownFunction(event){
 	    const charCode = String.fromCharCode(event.which).toLowerCase();
 	    const { onControlC, onControlV, onEscape } = this.props;
-	    console.log(event.keyCode);  
 	    if(event.ctrlKey && charCode === 'c') {
 	    	onControlC();
 	    } else if(event.ctrlKey && charCode === 'v') {
