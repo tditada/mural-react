@@ -14,30 +14,32 @@ import {
 	REMOVE_NOTES
 } from './constants'
 
-const initialState = {
+export const initialState = {
 	notes: [ {
 		id: 1,
 		text: "Welcome!",
-		color: COLORS[0],
+		color: COLORS[1],
 		posX: COPY_POSX,
 		posY: COPY_POSY,
 		active: false,
-		removed: false
+		removed: false,
+		canWrite: false
 	}, {
 		id: 2,
 		text: INSTRUCTIONS,
-		color: COLORS[1],
+		color: COLORS[2],
 		posX: 2*COPY_POSX ,
 		posY: 2*COPY_POSY,
 		active: false,
-		removed: false
+		removed: false,
+		canWrite: false
 	}],
 	totalNotesCreated: 2,
 	copied: []
 }
 
 const isNoteClick = (target) => {
-	return isTargetANote(target) || isTargetANote(target.parentNode)
+	return target && (isTargetANote(target) || isTargetANote(target.parentNode))
 }
 
 const isTargetANote = (target) => {
@@ -61,7 +63,8 @@ export const changeNotes = (state=initialState, action={}) => {
 				posX: action.payload.posX,
 				posY: action.payload.posY,
 				active: false,
-				removed: false
+				removed: false,
+				canWrite: false
 			}
 			return { ...state, notes :  [...state.notes, newNote], totalNotesCreated: state.totalNotesCreated + 1}
 		case SELECT_NOTE:
@@ -83,7 +86,6 @@ export const changeNotes = (state=initialState, action={}) => {
 			return { ...state, notes: newNotes}
 		case NO_SELECT:
 			if (isNoteClick(action.payload)) {
-
 				return state;
 			}
 			newNotes = state.notes.map( (item) => {
@@ -138,7 +140,7 @@ export const changeNotes = (state=initialState, action={}) => {
 				if (!item.active) {
 					return item;
 				}
-				return {... item, removed: true}
+				return { ...item, removed: true}
 			});
 			return { ...state, notes: newNotes}
 		default:

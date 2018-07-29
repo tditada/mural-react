@@ -10,7 +10,17 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "mocha --compilers js:babel-register ./test/**/*.test.js*",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "jsdom": "^11.12.0",
+    "mocha": "^5.2.0",
+    "mocha-jsdom": "^2.0.0"
   }
 }
