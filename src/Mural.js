@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createNote, noSelect, copyNotes, pasteNotes, removeNotes } from './actions';
 import './Mural.css';
 import NotesList from './NotesList'
-import { ESCAPE_CODE } from './constants'
+import { DELETE_CODE } from './constants'
 
 const mapStateToProps = (state) => {
   return {
@@ -25,12 +25,13 @@ class Mural extends Component {
 
 	keyDownFunction(event){
 	    const charCode = String.fromCharCode(event.which).toLowerCase();
-	    const { onControlC, onControlV, onEscape } = this.props;  
+	    const { onControlC, onControlV, onEscape } = this.props;
+	    console.log(event.keyCode);  
 	    if(event.ctrlKey && charCode === 'c') {
 	    	onControlC();
 	    } else if(event.ctrlKey && charCode === 'v') {
 	    	onControlV();
-	    } else if (event.keyCode == ESCAPE_CODE){
+	    } else if (event.keyCode === DELETE_CODE){
 	    	onEscape();
 	    }
 	}

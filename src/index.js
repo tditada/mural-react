@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 
 import Mural from './Mural';
-import './body.css';
+import './index.css';
 // import registerServiceWorker from './registerServiceWorker';
 import { changeNotes } from './reducers'
 
