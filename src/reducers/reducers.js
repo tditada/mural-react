@@ -13,13 +13,14 @@ import {
 	COLORS,
 	COPY_POSX,
 	COPY_POSY,
-	INSTRUCTIONS
+	INSTRUCTIONS,
+	INSTRUCTIONS_2
 }  from '../constants/generalConstants'
 
 export const initialState = {
 	notes: [ {
 		id: 1,
-		text: "Welcome!",
+		text: "Welcome! " + INSTRUCTIONS,
 		color: COLORS[1],
 		posX: COPY_POSX,
 		posY: COPY_POSY,
@@ -28,7 +29,7 @@ export const initialState = {
 		canWrite: false
 	}, {
 		id: 2,
-		text: INSTRUCTIONS,
+		text: INSTRUCTIONS_2,
 		color: COLORS[2],
 		posX: 2*COPY_POSX ,
 		posY: 2*COPY_POSY,
