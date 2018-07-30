@@ -8,7 +8,7 @@ const NotesList = ({ notes }) => {
 			notes.map((note, i)  => {
 				return (
 					<StickyNote 
-						key={note.id}
+						key={i}
 						noteid={note.id}
 					/>
 				);
