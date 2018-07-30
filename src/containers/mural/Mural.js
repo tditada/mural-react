@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createNote, noSelect, copyNotes, pasteNotes, removeNotes } from '../../actions/muralActions';
 import './Mural.css';
 import NotesList from '../../components/NotesList'
-import { DELETE_CODE } from '../../constants/generalConstants'
+import { DELETE_CODE, ESCAPE_CODE } from '../../constants/generalConstants'
 
 const mapStateToProps = (state) => {
   return {
@@ -30,7 +30,7 @@ class Mural extends Component {
 	    	onControlC();
 	    } else if(event.ctrlKey && charCode === 'v') {
 	    	onControlV();
-	    } else if (event.keyCode === DELETE_CODE){
+	    } else if (event.keyCode === DELETE_CODE || event.keyCode === ESCAPE_CODE){
 	    	onEscape();
 	    }
 	}

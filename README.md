@@ -8,7 +8,7 @@ Mini mural with sticky notes in React/Redux.
 1. Click to select a sticky note
 1. <kbd>Shift </kbd>+ Click to select multiple sticky notes
 1. <kbd>Ctrl</kbd> + <kbd>C</kbd>, <kbd>Ctrl</kbd> + <kbd>V</kbd> to copy and paste sticky notes
-1. <kbd>Delete</kbd> to remove selected sticky notes
+1. <kbd>Delete</kbd> or <kbd>Esc</kbd> to remove selected sticky notes
 
 
 ## Getting Started
