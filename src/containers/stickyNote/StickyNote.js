@@ -52,7 +52,7 @@ class StickyNote extends Component {
 
 	    return ( 
 	    	< div noteid={id} onClick={onNoteClick} onDoubleClick={onNoteDoubleClick} style={styles} className ={'note ' + activeClass + " " + bgColor + isRemoved} >
-	    		<p className={canWrite ? 'hidden' : ''}> {text} </p>
+	    		<p className={'noSelect ' + (canWrite ? 'hidden' : '')}> {text} </p>
     			<textarea value={text} maxLength={MAX_TEXT_SIZE} onKeyDown={(event) => this.auto_grow(event)} onChange={onWriteNote} ref={input => input && input.focus()} className={!canWrite ? 'hidden' : ''}></textarea>
 	    	</ div>
 	    );
