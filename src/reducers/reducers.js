@@ -135,7 +135,7 @@ export const changeNotes = (state=initialState, action={}) => {
 			id = state.totalNotesCreated;
 			const copied = state.copied.map( (item) => {
 				id = id + 1;
-				return { ...item, id: id, posX: item.posX + COPY_POSX, posY: item.posY + COPY_POSY};
+				return { ...item, id: id, posX: item.posX + COPY_POSX, posY: item.posY + COPY_POSY, canWrite: false};
 			});
 			newNotes = state.notes.concat(copied);
 			return { ...state, copied: [], notes: newNotes, totalNotesCreated: id}
