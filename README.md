@@ -56,7 +56,7 @@ If we are talking about frontend frameworks then *Vue.js* and *React* (this is m
 - **Did you work with any of these technologies? SVG, WebWorkers, WebSockets, Offline**
 Yes, I worked with SVG and WebSockets in the past.
 - **What other languages have you programmed in? Which ones professionally?**
-Professionally*: Java, PHP, Javascript*. Others:* Python, Octave*.
+Professionally: *Java, PHP, Javascript*. Others: *Python, Octave*.
 - **What is your favorite text editor?**
 Definitely *sublime*, but I use atom sometimes with some cool plugins I've found.
 - **Did you work with DBs? Which ones?**
